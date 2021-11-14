@@ -10,31 +10,29 @@ import {
 } from "@windmill/react-ui";
 import { Link } from "react-router-dom";
 
-const CollegeTable = ({ colleges }) => {
+const StudentTable = ({ students }) => {
   return (
     <div className="w-full md:mt-4">
       <TableContainer className="shadow-lg">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableCell>College</TableCell>
-              <TableCell>State</TableCell>
-              <TableCell>Country</TableCell>
-              <TableCell>Year Founded</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Batch Year</TableCell>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {colleges &&
-              colleges.map((college) => (
-                <TableRow key={college._id}>
+            {students &&
+              students.map((student) => (
+                <TableRow key={student._id}>
                   <Link
-                    to={`/college/${college._id}`}
-                    state={{ collegeData: college }}
+                    to={`/student/${student._id}`}
+                    state={{ studentData: student }}
                   >
                     <TableCell>
                       <div className="flex items-center text-sm">
                         <span className="font-semibold ml-2">
-                          {college.name}
+                          {student.name}
                         </span>
                       </div>
                     </TableCell>
@@ -42,21 +40,7 @@ const CollegeTable = ({ colleges }) => {
                   <TableCell>
                     <div className="flex items-center text-sm">
                       <span className="font-semibold ml-2">
-                        {college.state}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center text-sm">
-                      <span className="font-semibold ml-2">
-                        {college.country}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center text-sm">
-                      <span className="font-semibold ml-2">
-                        {college.yearFounded}
+                        {student.batchYear}
                       </span>
                     </div>
                   </TableCell>
@@ -77,4 +61,4 @@ const CollegeTable = ({ colleges }) => {
   );
 };
 
-export default CollegeTable;
+export default StudentTable;
