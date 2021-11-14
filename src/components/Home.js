@@ -31,7 +31,7 @@ const Home = () => {
         <Label className="w-full md:w-1/12">
           <span className="font-semibold text-lg">Country</span>
           <Select
-            className="mt-1 p-2"
+            className="mt-1 p-2 cursor-pointer"
             onChange={(e) => setCountry(e.target.value)}
           >
             <option value="India">India</option>
@@ -45,7 +45,7 @@ const Home = () => {
           <CourseWiseChart />
         </div>
         <div className="md:w-2/3">
-          <CollegeTable colleges={colleges} />
+          <CollegeTable colleges={colleges} title={"All Colleges"} />
         </div>
       </div>
     </BaseLayout>

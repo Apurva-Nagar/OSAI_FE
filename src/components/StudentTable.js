@@ -8,11 +8,16 @@ import {
   TableFooter,
   Pagination,
 } from "@windmill/react-ui";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const StudentTable = ({ students }) => {
+const StudentTable = ({ students, title }) => {
+  const RESULTS_PER_PAGE = 10;
+  const [page, setPage] = useState(0);
+
   return (
     <div className="w-full md:mt-4">
+      <h3 className="text-left ml-4 font-semibold p-2 text-lg">{title}</h3>
       <TableContainer className="shadow-lg">
         <Table>
           <TableHeader>
@@ -23,38 +28,42 @@ const StudentTable = ({ students }) => {
           </TableHeader>
           <TableBody>
             {students &&
-              students.map((student) => (
-                <TableRow key={student._id}>
-                  <Link
-                    to={`/student/${student._id}`}
-                    state={{ studentData: student }}
-                  >
+              students
+                .slice((page - 1) * RESULTS_PER_PAGE, page * RESULTS_PER_PAGE)
+                .map((student) => (
+                  <TableRow key={student._id}>
+                    <TableCell>
+                      <Link
+                        to={`/student/${student._id}`}
+                        state={{ studentData: student }}
+                      >
+                        <div className="flex items-center text-sm hover:text-purple-500">
+                          <span className="font-semibold ml-2">
+                            {student.name}
+                          </span>
+                        </div>
+                      </Link>
+                    </TableCell>
                     <TableCell>
                       <div className="flex items-center text-sm">
                         <span className="font-semibold ml-2">
-                          {student.name}
+                          {student.batchYear}
                         </span>
                       </div>
                     </TableCell>
-                  </Link>
-                  <TableCell>
-                    <div className="flex items-center text-sm">
-                      <span className="font-semibold ml-2">
-                        {student.batchYear}
-                      </span>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))}
+                  </TableRow>
+                ))}
           </TableBody>
         </Table>
         <TableFooter>
-          <Pagination
-            totalResults={10}
-            resultsPerPage={4}
-            onChange={() => {}}
-            label="Table navigation"
-          />
+          {students && (
+            <Pagination
+              totalResults={students.length}
+              resultsPerPage={RESULTS_PER_PAGE}
+              onChange={setPage}
+              label="Table navigation"
+            />
+          )}
         </TableFooter>
       </TableContainer>
     </div>

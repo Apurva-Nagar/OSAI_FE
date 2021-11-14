@@ -49,11 +49,11 @@ const CollegeDetails = () => {
   return (
     <BaseLayout>
       <div className="flex flex-col w-full justify-center mb-3 md:mb-0">
-        <div className="flex flex-row">
+        <div className="flex flex-col md:flex-row">
           {collegeDetails && (
-            <div className="w-1/2 bg-white rounded-lg shadow-lg border border-gray p-4 mt-4">
+            <div className="w-full md:w-1/2 bg-white rounded-lg shadow-lg border border-gray p-4 mt-4">
               <div className="pb-4 pl-3 font-semibold text-lg text-left border-b-2">
-                Details
+                College Details
               </div>
               <div className="grid grid-cols-2 mt-4 text-left gap-4">
                 <div className="text-left ml-8 font-semibold">Name</div>
@@ -71,13 +71,27 @@ const CollegeDetails = () => {
               </div>
             </div>
           )}
-          <div className="ml-8 w-1/2">
-            {/* <CollegeTable colleges={similarColleges} /> */}
-            <StudentTable students={students} />
+          <div className="md:ml-8 w-full md:w-1/2 mt-8 md:mt-0">
+            <StudentTable students={students} title="Students enrolled" />
           </div>
         </div>
         <div className="mt-8">
-          <CollegeTable colleges={similarColleges} />
+          {similarColleges && similarColleges.length ? (
+            <CollegeTable
+              colleges={similarColleges}
+              title={"Other Similar Colleges"}
+            />
+          ) : (
+            <div>
+              <h3 className="text-left ml-4 font-semibold p-2 text-lg">
+                Other Similar Colleges
+              </h3>
+              <p className="font-thin">
+                No similar colleges found (based on location, course, student
+                count)
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </BaseLayout>
