@@ -30,8 +30,11 @@ const StudentTable = ({ students, title }) => {
             {students &&
               students
                 .slice((page - 1) * RESULTS_PER_PAGE, page * RESULTS_PER_PAGE)
-                .map((student) => (
-                  <TableRow key={student._id}>
+                .map((student, idx) => (
+                  <TableRow
+                    key={student._id}
+                    className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                  >
                     <TableCell>
                       <Link
                         to={`/student/${student._id}`}

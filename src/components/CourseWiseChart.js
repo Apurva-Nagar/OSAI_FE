@@ -27,7 +27,7 @@ const CourseWiseChart = ({ data, setCourseSelected }) => {
         center: ["50%", "40%"],
         avoidLabelOverlap: false,
         itemStyle: {
-          borderRadius: 10,
+          borderRadius: 4,
           borderColor: "#fff",
           borderWidth: 2,
         },
@@ -44,7 +44,7 @@ const CourseWiseChart = ({ data, setCourseSelected }) => {
         emphasis: {
           label: {
             show: true,
-            fontSize: "40",
+            fontSize: "20",
             fontWeight: "bold",
           },
         },

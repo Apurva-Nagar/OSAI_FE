@@ -75,17 +75,21 @@ const Home = () => {
 
   return (
     <BaseLayout>
-      <div className="flex w-full items-left mb-3 md:mb-0">
-        <Label className="w-full md:w-1/12">
-          <span className="font-semibold text-lg">Country</span>
-          <Select
-            className="mt-1 p-2 cursor-pointer"
-            onChange={(e) => setCountry(e.target.value)}
-          >
-            <option value="India">India</option>
-            <option value="USA">USA</option>
-          </Select>
-        </Label>
+      <div className="w-full flex justify-start">
+        <div className="w-1/2 md:w-1/5 flex flex-row mb-3 md:mb-0 items-center">
+          <Label className="">
+            <span className="font-semibold text-lg">Country</span>
+          </Label>
+          <div className="w-full md:w-1/3">
+            <Select
+              className="ml-4 mt-1 p-2 cursor-pointer"
+              onChange={(e) => setCountry(e.target.value)}
+            >
+              <option value="India">India</option>
+              <option value="USA">USA</option>
+            </Select>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col md:flex-row w-full gap-10">
         <div className="flex flex-col md:w-1/3 gap-4">

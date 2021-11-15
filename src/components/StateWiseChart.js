@@ -26,7 +26,7 @@ const StateWiseChart = ({ data, setStateSelected }) => {
         radius: ["40%", "70%"],
         avoidLabelOverlap: false,
         itemStyle: {
-          borderRadius: 10,
+          borderRadius: 4,
           borderColor: "#fff",
           borderWidth: 2,
         },
@@ -43,7 +43,7 @@ const StateWiseChart = ({ data, setStateSelected }) => {
         emphasis: {
           label: {
             show: true,
-            fontSize: "40",
+            fontSize: "20",
             fontWeight: "bold",
           },
         },

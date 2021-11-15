@@ -16,7 +16,7 @@ const CollegeTable = ({ colleges, title }) => {
   const [page, setPage] = useState(0);
 
   return (
-    <div className="w-full md:mt-4">
+    <div className="w-full">
       <h3 className="text-left ml-4 font-semibold p-2 text-lg">{title}</h3>
       <TableContainer className="shadow-lg">
         <Table>
@@ -32,8 +32,11 @@ const CollegeTable = ({ colleges, title }) => {
             {colleges &&
               colleges
                 .slice((page - 1) * RESULTS_PER_PAGE, page * RESULTS_PER_PAGE)
-                .map((college) => (
-                  <TableRow key={college._id}>
+                .map((college, idx) => (
+                  <TableRow
+                    key={college._id}
+                    className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                  >
                     <TableCell>
                       <Link
                         to={`/college/${college._id}`}
