@@ -1,6 +1,15 @@
 import ReactECharts from "echarts-for-react";
 
-const CourseWiseChart = () => {
+const CourseWiseChart = ({ data, setCourseSelected }) => {
+  const onChartClick = (params) => {
+    const { name } = params;
+    setCourseSelected(name);
+  };
+
+  const _onEvents = {
+    click: onChartClick,
+  };
+
   const options = {
     tooltip: {
       trigger: "item",
@@ -12,9 +21,10 @@ const CourseWiseChart = () => {
     },
     series: [
       {
-        name: "Access From",
+        name: "Course Wise Distribution",
         type: "pie",
         radius: ["40%", "70%"],
+        center: ["50%", "40%"],
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 10,
@@ -41,20 +51,14 @@ const CourseWiseChart = () => {
         labelLine: {
           show: false,
         },
-        data: [
-          { value: 1048, name: "Search Engine" },
-          { value: 735, name: "Direct" },
-          { value: 580, name: "Email" },
-          { value: 484, name: "Union Ads" },
-          { value: 300, name: "Video Ads" },
-        ],
+        data: data,
       },
     ],
   };
 
   return (
     <div className="w-full bg-white shadow-lg border rounded-md mt-4">
-      <ReactECharts option={options} />
+      <ReactECharts option={options} onEvents={_onEvents} />
     </div>
   );
 };
