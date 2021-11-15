@@ -30,7 +30,7 @@ const CollegeDetails = () => {
       }
     }
     fetchData();
-  }, [collegeData]);
+  }, [collegeData, id]);
 
   useEffect(() => {
     async function fetchData() {
