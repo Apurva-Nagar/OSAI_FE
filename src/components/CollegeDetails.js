@@ -51,8 +51,8 @@ const CollegeDetails = () => {
       <div className="flex flex-col w-full justify-center mb-3 md:mb-0">
         <div className="flex flex-col md:flex-row">
           {collegeDetails && (
-            <div className="w-full md:w-1/2 bg-white rounded-lg shadow-lg border border-gray p-4 mt-4">
-              <div className="pb-4 pl-3 font-semibold text-lg text-left border-b-2">
+            <div className="w-full md:w-1/2 bg-white rounded-lg shadow-lg border border-gray mt-4 pb-4">
+              <div className="pb-4 pl-8 font-semibold text-lg text-left text-white bg-purple-500 pt-3 rounded-t-lg">
                 College Details
               </div>
               <div className="grid grid-cols-2 mt-4 text-left gap-4">
@@ -66,8 +66,18 @@ const CollegeDetails = () => {
                 <div>{collegeDetails.state}</div>
                 <div className="text-left ml-8 font-semibold">Country</div>
                 <div>{collegeDetails.country}</div>
-                <div className="text-left ml-8 font-semibold">Skills</div>
-                <div>{collegeData.courses.join(", ")}</div>
+                <div className="text-left ml-8 font-semibold">Courses</div>
+                <div className="flex flex-row gap-2 flex-wrap">
+                  {collegeData &&
+                    collegeData.courses.map((course) => (
+                      <div
+                        key={course}
+                        className="bg-purple-500 text-white font-bold py-1 px-2 rounded-full text-xs inline-block"
+                      >
+                        {course}
+                      </div>
+                    ))}
+                </div>
               </div>
             </div>
           )}

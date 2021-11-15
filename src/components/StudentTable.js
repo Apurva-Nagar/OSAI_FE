@@ -16,7 +16,7 @@ const StudentTable = ({ students, title }) => {
   const [page, setPage] = useState(0);
 
   return (
-    <div className="w-full md:mt-4">
+    <div className="w-full">
       <h3 className="text-left ml-4 font-semibold p-2 text-lg">{title}</h3>
       <TableContainer className="shadow-lg">
         <Table>
