@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BaseLayout from "./BaseLayout";
-import axios from "axios";
+import fireRequest from "../fireRequest/fireRequest";
 
 const StudentDetails = () => {
   const { id } = useParams();
@@ -10,16 +10,14 @@ const StudentDetails = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await axios.get(
-          `http://localhost:5000/students/${id}`
-        );
+        const data = await fireRequest("fetchStudent", { id });
         setStudentDetails(data);
       } catch (error) {
         console.log(error);
       }
     }
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <BaseLayout>

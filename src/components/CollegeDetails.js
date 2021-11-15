@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import BaseLayout from "./BaseLayout";
 import { useLocation, useParams } from "react-router-dom";
-import axios from "axios";
 import CollegeTable from "./CollegeTable";
 import StudentTable from "./StudentTable";
+import fireRequest from "../fireRequest/fireRequest";
 
 const CollegeDetails = () => {
   const { id } = useParams();
@@ -17,10 +17,10 @@ const CollegeDetails = () => {
     if (collegeData) setCollegeDetails(collegeData);
     async function fetchData() {
       try {
-        const { data } = await axios.get(
-          `http://localhost:5000/colleges/${id}/?onlySimilar=${
-            collegeData ? true : false
-          }`
+        const data = await fireRequest(
+          "fetchCollegeDetails",
+          { id },
+          { onlySimilar: collegeData ? true : false }
         );
         const { college, similarColleges } = data;
         if (college) setCollegeDetails(college);
@@ -35,8 +35,10 @@ const CollegeDetails = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await axios.get(
-          `http://localhost:5000/students/?collegeId=${id}`
+        const data = await fireRequest(
+          "fetchCollegeStudents",
+          {},
+          { collegeId: id }
         );
         setStudents(data);
       } catch (error) {
@@ -44,7 +46,7 @@ const CollegeDetails = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <BaseLayout>

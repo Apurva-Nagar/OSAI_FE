@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Label, Select } from "@windmill/react-ui";
 
 import BaseLayout from "./BaseLayout";
@@ -8,6 +7,7 @@ import CourseWiseChart from "./CourseWiseChart";
 import StateWiseChart from "./StateWiseChart";
 
 import { generateChartsData } from "../utils/generateChartsData";
+import fireRequest from "../fireRequest/fireRequest";
 
 const Home = () => {
   const [country, setCountry] = useState("India");
@@ -48,8 +48,10 @@ const Home = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await axios.get(
-          `http://localhost:5000/colleges?country=${country}`
+        const data = await fireRequest(
+          "fetchCollegesByCountry",
+          {},
+          { country }
         );
         setColleges(data);
 
