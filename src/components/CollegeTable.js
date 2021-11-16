@@ -8,12 +8,16 @@ import {
   TableFooter,
   Pagination,
 } from "@windmill/react-ui";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const CollegeTable = ({ colleges, title }) => {
   const RESULTS_PER_PAGE = 10;
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    setPage(1);
+  }, [title]);
 
   return (
     <div className="w-full">
